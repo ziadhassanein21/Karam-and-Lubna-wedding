@@ -1,0 +1,246 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Alexa and Richard are inviting you to their wedding.">
+    <meta name="theme-color" content="#fffdfb">
+    <title>Alexa &amp; Richard</title>
+    <link rel="preconnect" href="https://static.tildacdn.net">
+    <link rel="preconnect" href="https://optim.tildacdn.net">
+    <link rel="preconnect" href="https://pub-4dc8201144ca418fb604349c73e8c724.r2.dev">
+    <link rel="stylesheet" href="src/styles.css">
+  </head>
+  <body>
+    <div class="intro-cover" id="introCover" aria-label="Invitation cover">
+      <button class="cover-opener" type="button" aria-label="Open invitation">
+        <img class="cover-panel cover-panel-left" src="https://static.tildacdn.net/tild6338-3733-4431-a363-306634383864/Polygon_4.png" alt="" aria-hidden="true">
+        <img class="cover-panel cover-panel-right" src="https://static.tildacdn.net/tild3636-6566-4132-b665-343766326335/Polygon_3.png" alt="" aria-hidden="true">
+        <img class="cover-panel cover-panel-bottom" src="https://static.tildacdn.net/tild6262-6339-4933-b833-343039643037/Polygon_2_1.png" alt="" aria-hidden="true">
+        <img class="cover-panel cover-panel-top" src="https://static.tildacdn.net/tild3762-3738-4361-b134-333538333135/Polygon_1_3.png" alt="" aria-hidden="true">
+        <img class="wax-seal" src="https://static.tildacdn.net/tild6164-3830-4431-b133-666364353937/Untitled_Project_7.png" alt="" aria-hidden="true">
+        <span class="cover-text">Click to open</span>
+      </button>
+    </div>
+
+    <audio id="invitationAudio" loop preload="auto">
+      <source src="https://pub-4dc8201144ca418fb604349c73e8c724.r2.dev/Forever%20and%20Ever%20and%20Always%20(The%20Wedding%20Song)%20-%20Ryan%20Mack%20(1).mp3" type="audio/mp3">
+    </audio>
+
+    <main>
+      <section class="hero section" aria-labelledby="hero-title">
+        <div class="hero-card">
+          <video class="hero-video" autoplay muted loop playsinline preload="auto">
+            <source src="https://pub-4dc8201144ca418fb604349c73e8c724.r2.dev/Italian_villa_terrace_202604231419%20(1).MP4" type="video/mp4">
+          </video>
+          <div class="hero-arch" aria-hidden="true"></div>
+          <div class="hero-copy reveal is-visible">
+            <h1 id="hero-title" class="script-title hero-title">Alexa &amp; Richard</h1>
+            <p>are getting married!</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="date-section section" aria-labelledby="date-title">
+        <div class="visual-column">
+          <h2 id="date-title" class="script-title reveal">The Date</h2>
+          <div class="date-grid reveal" aria-label="Wedding date reveal cards">
+            <article class="scratch-card" data-value="14" data-label="Day">
+              <div class="scratch-value">14</div>
+              <canvas aria-hidden="true"></canvas>
+              <p>Day</p>
+            </article>
+            <article class="scratch-card" data-value="September" data-label="Month">
+              <div class="scratch-value scratch-month">September</div>
+              <canvas aria-hidden="true"></canvas>
+              <p>Month</p>
+            </article>
+            <article class="scratch-card" data-value="2025" data-label="Year">
+              <div class="scratch-value">2025</div>
+              <canvas aria-hidden="true"></canvas>
+              <p>Year</p>
+            </article>
+          </div>
+          <p class="date-hint reveal">&#10022; Scratch to reveal the date &#10022;</p>
+        </div>
+      </section>
+
+      <section class="letter-section section" aria-labelledby="letter-title">
+        <div class="envelope reveal">
+          <img class="letter-ornament letter-ornament-top" src="https://static.tildacdn.net/tild3537-6234-4333-b136-346664343536/a1ac64fc830eb50d2e69.png" alt="" aria-hidden="true" loading="lazy">
+          <img class="letter-ornament letter-ornament-center" src="https://static.tildacdn.net/tild6435-3530-4464-b966-383935316136/Untitled_Project_9_3.png" alt="" aria-hidden="true" loading="lazy">
+          <span class="letter-ornament letter-ornament-leaf" aria-hidden="true"></span>
+          <img class="envelope-layer envelope-paper" src="https://static.tildacdn.net/tild3935-3461-4137-b866-623466636431/Untitled_Project_9_2.png" alt="" aria-hidden="true" loading="lazy">
+          <div class="letter-card">
+            <h2 id="letter-title" class="script-title">Dear friends and family,</h2>
+            <p>
+              As we get ready to say “I do,” we feel grateful for the wonderful people in our lives.
+              Your support means the world to us, and we would be honored to have you with us as we begin our life together.
+            </p>
+          </div>
+          <img class="envelope-layer envelope-front-img" src="https://static.tildacdn.net/tild6439-3462-4163-b432-363239323565/Group_63_2.png" alt="" aria-hidden="true" loading="lazy">
+        </div>
+      </section>
+
+      <section class="schedule-section section" aria-labelledby="schedule-title">
+        <div class="schedule-wrap">
+          <h2 id="schedule-title" class="script-title reveal">Schedule of Events</h2>
+          <div class="cloud-left" aria-hidden="true"></div>
+          <div class="cloud-right" aria-hidden="true"></div>
+          <ol class="event-list reveal" aria-label="Wedding day schedule">
+            <li class="event event-one"><time datetime="16:30">16:30</time><span>Opening of the doors</span></li>
+            <li class="event event-two"><time datetime="17:00">17:00</time><span>Ceremony</span></li>
+            <li class="event event-three"><time datetime="18:00">18:00</time><span>Cocktail and dancing time</span></li>
+            <li class="event event-four"><time datetime="20:00">20:00</time><span>Dinner</span></li>
+            <li class="event event-five"><time datetime="21:00">21:00</time><span>Party and Open Bar</span></li>
+            <li class="event event-six"><time datetime="23:00">23:00</time><span>End of the celebration</span></li>
+          </ol>
+        </div>
+      </section>
+
+      <section class="venue-section section" aria-labelledby="venue-title">
+        <div class="visual-column venue-wrap">
+          <h2 id="venue-title" class="script-title reveal">Wedding Venue</h2>
+          <div class="venue-card reveal">
+            <div class="venue-caption">
+              <img src="https://static.tildacdn.net/tild3634-3330-4631-b336-373334613834/noroot.png" alt="" aria-hidden="true">
+              <div>
+                <h3>Villa Borghese</h3>
+                <p>Address: Puerto Vallarta, MX</p>
+              </div>
+            </div>
+            <img
+              src="https://static.tildacdn.net/tild3361-3537-4334-b532-323531306235/8cdb6addd9fcedfeb54b.jpg"
+              alt="Villa Borghese wedding venue"
+              width="880"
+              height="1172"
+              loading="lazy"
+            >
+          </div>
+        </div>
+      </section>
+
+      <section class="dress-intro section" aria-labelledby="dress-title">
+        <div class="visual-column">
+          <h2 id="dress-title" class="script-title reveal">Dress Code</h2>
+          <p class="serif-copy reveal">
+            We would be very happy if your outfit is in the colours of the wedding theme.
+          </p>
+          <p class="scroll-note reveal">scroll <img src="https://static.tildacdn.net/tild3164-6534-4234-b037-396637343432/Group_23_6.png" alt="" aria-hidden="true"></p>
+        </div>
+      </section>
+
+      <section class="gallery-section section" aria-label="Dress code inspiration gallery">
+        <div class="gallery-window reveal">
+          <div class="gallery-track">
+            <img src="https://static.tildacdn.net/tild3636-6361-4930-b032-303334643635/fe849b681b9cfddb0d3b.png" alt="Dress code inspiration" width="404" height="500" loading="lazy">
+            <img src="https://static.tildacdn.net/tild6534-6461-4737-a535-383131303433/929df5d91510928224dc.png" alt="Dress code inspiration" width="415" height="500" loading="lazy">
+            <img src="https://static.tildacdn.net/tild6336-3439-4466-b332-383265633833/0b221d34a7bea5af08ac.jpg" alt="Dress code inspiration" width="282" height="500" loading="lazy">
+            <img src="https://static.tildacdn.net/tild3164-3730-4539-b833-356663306534/fe9b100e056d201daaa0.jpg" alt="Dress code inspiration" width="333" height="500" loading="lazy">
+            <img src="https://static.tildacdn.net/tild3765-6165-4631-a432-383936306336/1be83ec7c312b2e66a71.jpg" alt="Dress code inspiration" width="400" height="500" loading="lazy">
+            <img src="https://static.tildacdn.net/tild3739-3133-4436-b536-313739653132/cbd7efbf41ddb54271af.jpg" alt="Dress code inspiration" width="375" height="500" loading="lazy">
+            <img src="https://static.tildacdn.net/tild6562-3130-4965-b235-376232326561/61a01dd884f0c3b00bd5.jpg" alt="Dress code inspiration" width="330" height="500" loading="lazy">
+            <img src="https://static.tildacdn.net/tild3336-6363-4363-b462-306330343939/fd70c331309855caacec.jpg" alt="Dress code inspiration" width="333" height="500" loading="lazy">
+            <img src="https://static.tildacdn.net/tild3238-3063-4861-a134-626434323464/3f985b99d3bfbb52bbf7.jpg" alt="Dress code inspiration" width="400" height="500" loading="lazy">
+            <img src="https://static.tildacdn.net/tild3436-3931-4635-a665-333365626134/feb970b653de72df570f.jpg" alt="Dress code inspiration" width="375" height="500" loading="lazy">
+          </div>
+        </div>
+      </section>
+
+      <section class="palette-section section" aria-labelledby="palette-title">
+        <div class="palette-wrap reveal">
+          <div class="palette-row">
+            <h2 id="palette-title">Colours:</h2>
+            <ul class="swatches" aria-label="Wedding color palette">
+              <li style="--swatch:#fff3dc"><span>Cream</span></li>
+              <li style="--swatch:#f8dfad"><span>Honey</span></li>
+              <li style="--swatch:#f0c4c1"><span>Blush</span></li>
+              <li style="--swatch:#b9d8f3"><span>Powder blue</span></li>
+              <li style="--swatch:#79bdf2"><span>Sky blue</span></li>
+            </ul>
+          </div>
+          <p>
+            Ladies: Elegant summer dresses in pastel tones. We recommend bringing a hat and sunglasses for comfort.
+          </p>
+          <p>
+            Gentlemen: Suits or shirts in classic shades. Grey, blue, brown, beige are great choices!
+          </p>
+        </div>
+      </section>
+
+      <section class="rsvp-section section" aria-labelledby="rsvp-title">
+        <div class="visual-column reveal">
+          <h2 id="rsvp-title" class="script-title">Confirm Your Attendance</h2>
+          <p class="serif-copy">
+            To help us prepare for a joyful celebration, kindly confirm your attendance.
+          </p>
+          <button class="cta-button" type="button" data-open-rsvp>RSVP</button>
+        </div>
+      </section>
+
+      <section class="closing-section section" aria-labelledby="closing-title">
+        <div class="visual-column closing-wrap reveal">
+          <p id="closing-title" class="script-title closing-note">Hope to see you there!</p>
+          <p class="closing-names">Alexa &amp; Richard</p>
+          <img class="heart-img" src="https://static.tildacdn.net/tild6539-6164-4935-a236-653733393933/d9723fe4-b0e2-4d4e-a.png" alt="" aria-hidden="true">
+          <div class="closing-card">
+            <img
+              src="https://static.tildacdn.net/tild3965-6266-4165-b837-303236623330/elegant-couple-love-.jpg"
+              alt="Alexa and Richard portrait"
+              width="880"
+              height="1034"
+              loading="lazy"
+            >
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <button class="audio-toggle" type="button" aria-label="Pause background music" data-audio-toggle>
+      <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="5" width="4" height="14" rx="1"></rect><rect x="14" y="5" width="4" height="14" rx="1"></rect></svg>
+    </button>
+
+    <dialog class="rsvp-dialog" id="rsvpDialog" aria-labelledby="dialog-title">
+      <button class="modal-close" type="button" aria-label="Close RSVP form" data-close-rsvp>
+        <svg viewBox="0 0 23 23" aria-hidden="true"><rect x="10.31" y="-3.69" width="2" height="30" transform="translate(11.31 11.31) rotate(-45)"></rect><rect x="10.31" y="-3.69" width="2" height="30" transform="translate(11.31 11.31) rotate(-315)"></rect></svg>
+      </button>
+      <div class="dialog-panel">
+        <img
+          class="dialog-photo"
+          src="https://static.tildacdn.net/tild3862-3630-4035-b331-383335383439/romantic-moments-bea.jpg"
+          alt="Couple on beach"
+          width="1120"
+          height="744"
+          loading="lazy"
+        >
+        <form class="rsvp-form" method="dialog">
+          <div class="dialog-heading">
+            <h2 id="dialog-title">Confirm Your Attendance!</h2>
+            <p>Please RSVP before September 30</p>
+          </div>
+
+          <label class="field">
+            <span>Your name</span>
+            <input name="guest-name" autocomplete="name" required>
+          </label>
+
+          <fieldset class="field fieldset">
+            <legend>Will you come?</legend>
+            <label><input type="checkbox" name="attendance" value="yes"> Yes, I will</label>
+            <label><input type="checkbox" name="attendance" value="no"> Unfortunately, I cant :(</label>
+            <label><input type="checkbox" name="attendance" value="later"> Ill tell you a bit later</label>
+          </fieldset>
+
+          <label class="field">
+            <span>Do have have any food intolerances?</span>
+            <input name="food-notes" autocomplete="off">
+          </label>
+
+          <button class="submit-button" type="submit">Submit</button>
+        </form>
+      </div>
+    </dialog>
+
+    <script src="src/main.js" defer></script>
+  </body>
+</html>
