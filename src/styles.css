@@ -552,6 +552,7 @@ button {
   height: 490px;
   margin: 0 0 0 calc(50% - 245px);
   background: transparent;
+  clip-path: inset(-150px 0px 0px 0px);
 }
 
 .envelope-layer,
