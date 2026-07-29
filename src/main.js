@@ -1,317 +1,328 @@
-const icon = (name) => {
-  if (name === "play") {
-    return '<svg viewBox="0 0 24 24" aria-hidden="true"><polygon points="5,3 19,12 5,21"></polygon></svg>';
+function playMusic() {
+  const audio = document.querySelector("#bgMusic");
+  if (audio) {
+    audio.currentTime = 27;
+    audio.play().then(() => {
+      document.querySelector(".music-toggle")?.classList.add("is-playing");
+    }).catch(err => console.log("Autoplay prevented:", err));
   }
-  return '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="5" width="4" height="14" rx="1"></rect><rect x="14" y="5" width="4" height="14" rx="1"></rect></svg>';
-};
+}
+
+function initMusicToggle() {
+  const toggle = document.querySelector(".music-toggle");
+  const audio = document.querySelector("#bgMusic");
+  if (toggle && audio) {
+    toggle.addEventListener("click", () => {
+      if (audio.paused) {
+        audio.play();
+        toggle.classList.add("is-playing");
+      } else {
+        audio.pause();
+        toggle.classList.remove("is-playing");
+      }
+    });
+  }
+}
 
 function initCover() {
-  const cover = document.querySelector("#introCover");
-  const opener = cover?.querySelector(".cover-opener");
-  if (!cover || !opener) return;
-
-  opener.addEventListener("click", () => {
-    cover.classList.add("is-open");
-    document.body.classList.add("audio-ready");
-    const audio = document.querySelector("#invitationAudio");
-    if (audio) {
-      audio.muted = false;
-      audio.play().catch(() => {});
-    }
-    window.setTimeout(() => {
-      cover.setAttribute("aria-hidden", "true");
-    }, 1500);
-  }, { once: true });
+  const e = document.querySelector("#introCover");
+  const t = e?.querySelector(".cover-opener");
+  if (e && t) {
+    t.addEventListener("click", () => {
+      e.classList.add("is-open");
+      window.setTimeout(() => {
+        e.setAttribute("aria-hidden", "true");
+      }, 1500);
+      playMusic();
+    }, { once: true });
+  }
 }
 
 function initReveals() {
-  const revealItems = document.querySelectorAll(".reveal");
+  const e = document.querySelectorAll(".reveal");
   if (!("IntersectionObserver" in window)) {
-    revealItems.forEach((item) => item.classList.add("is-visible"));
+    e.forEach(e => e.classList.add("is-visible"));
     return;
   }
-
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add("is-visible");
-        observer.unobserve(entry.target);
+  const t = new IntersectionObserver(e => {
+    e.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add("is-visible");
+        t.unobserve(e.target);
       }
     });
   }, {
     threshold: 0.14,
-    rootMargin: "0px 0px -8% 0px",
+    rootMargin: "0px 0px -8% 0px"
   });
-
-  revealItems.forEach((item) => observer.observe(item));
+  e.forEach(e => t.observe(e));
 }
 
-function drawScratchCover(canvas) {
-  const rect = canvas.getBoundingClientRect();
-  const dpr = Math.max(1, window.devicePixelRatio || 1);
-  canvas.width = Math.round(rect.width * dpr);
-  canvas.height = Math.round(rect.height * dpr);
-
-  const ctx = canvas.getContext("2d", { willReadFrequently: true });
-  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-  ctx.clearRect(0, 0, rect.width, rect.height);
-
-  const gradient = ctx.createLinearGradient(0, 0, rect.width, rect.height);
-  gradient.addColorStop(0, "#dce8ee");
-  gradient.addColorStop(0.25, "#d2dfe6");
-  gradient.addColorStop(0.55, "#c8d7df");
-  gradient.addColorStop(0.8, "#d0dde5");
-  gradient.addColorStop(1, "#c4d3dc");
-  ctx.fillStyle = gradient;
-  ctx.fillRect(0, 0, rect.width, rect.height);
-
-  const highlight = ctx.createRadialGradient(
-    rect.width * 0.28,
-    rect.height * 0.24,
-    0,
-    rect.width * 0.28,
-    rect.height * 0.24,
-    rect.width * 0.65,
-  );
-  highlight.addColorStop(0, "rgba(240,248,252,0.65)");
-  highlight.addColorStop(0.45, "rgba(230,242,248,0.22)");
-  highlight.addColorStop(1, "rgba(230,242,248,0)");
-  ctx.fillStyle = highlight;
-  ctx.fillRect(0, 0, rect.width, rect.height);
-
-  ctx.globalAlpha = 0.1;
-  ctx.strokeStyle = "#eef4f8";
-  ctx.lineWidth = 9;
-  for (let x = -rect.height; x < rect.width + rect.height; x += 20) {
-    ctx.beginPath();
-    ctx.moveTo(x, 0);
-    ctx.lineTo(x + rect.height * 0.75, rect.height);
-    ctx.stroke();
+function drawScratchCover(e) {
+  const t = e.getBoundingClientRect();
+  const n = Math.max(1, window.devicePixelRatio || 1);
+  e.width = Math.round(t.width * n);
+  e.height = Math.round(t.height * n);
+  const o = e.getContext("2d", { willReadFrequently: true });
+  o.setTransform(n, 0, 0, n, 0, 0);
+  o.clearRect(0, 0, t.width, t.height);
+  const r = o.createLinearGradient(0, 0, t.width, t.height);
+  r.addColorStop(0, "#f1d38e");
+  r.addColorStop(0.25, "#e5be6f");
+  r.addColorStop(0.55, "#dca84f");
+  r.addColorStop(0.8, "#c59238");
+  r.addColorStop(1, "#b58129");
+  o.fillStyle = r;
+  o.fillRect(0, 0, t.width, t.height);
+  const a = o.createRadialGradient(0.28 * t.width, 0.24 * t.height, 0, 0.28 * t.width, 0.24 * t.height, 0.65 * t.width);
+  a.addColorStop(0, "rgba(255, 248, 220, 0.55)");
+  a.addColorStop(0.45, "rgba(253, 237, 192, 0.22)");
+  a.addColorStop(1, "rgba(253, 237, 192, 0)");
+  o.fillStyle = a;
+  o.fillRect(0, 0, t.width, t.height);
+  o.globalAlpha = 0.15;
+  o.strokeStyle = "#fbf4e5";
+  o.lineWidth = 9;
+  for (let e = -t.height; e < t.width + t.height; e += 20) {
+    o.beginPath();
+    o.moveTo(e, 0);
+    o.lineTo(e + 0.75 * t.height, t.height);
+    o.stroke();
   }
-  ctx.globalAlpha = 1;
+  o.globalAlpha = 1;
 }
 
-function getCanvasPoint(event, canvas) {
-  const rect = canvas.getBoundingClientRect();
+function getCanvasPoint(e, t) {
+  const n = t.getBoundingClientRect();
   return {
-    x: event.clientX - rect.left,
-    y: event.clientY - rect.top,
+    x: e.clientX - n.left,
+    y: e.clientY - n.top
   };
 }
 
-function eraseAt(canvas, point) {
-  const ctx = canvas.getContext("2d", { willReadFrequently: true });
-  ctx.save();
-  ctx.globalCompositeOperation = "destination-out";
-  const radius = Math.max(18, canvas.getBoundingClientRect().width * 0.16);
-  const gradient = ctx.createRadialGradient(point.x, point.y, 4, point.x, point.y, radius);
-  gradient.addColorStop(0, "rgba(0,0,0,1)");
-  gradient.addColorStop(0.68, "rgba(0,0,0,0.9)");
-  gradient.addColorStop(1, "rgba(0,0,0,0)");
-  ctx.fillStyle = gradient;
-  ctx.beginPath();
-  ctx.arc(point.x, point.y, radius, 0, Math.PI * 2);
-  ctx.fill();
-  ctx.restore();
+function eraseAt(e, t) {
+  const n = e.getContext("2d", { willReadFrequently: true });
+  n.save();
+  n.globalCompositeOperation = "destination-out";
+  const o = Math.max(18, 0.16 * e.getBoundingClientRect().width);
+  const r = n.createRadialGradient(t.x, t.y, 4, t.x, t.y, o);
+  r.addColorStop(0, "rgba(0,0,0,1)");
+  r.addColorStop(0.68, "rgba(0,0,0,0.9)");
+  r.addColorStop(1, "rgba(0,0,0,0)");
+  n.fillStyle = r;
+  n.beginPath();
+  n.arc(t.x, t.y, o, 0, 2 * Math.PI);
+  n.fill();
+  n.restore();
 }
 
-function revealCard(card) {
-  const canvas = card.querySelector("canvas");
-  canvas.style.transition = "opacity 350ms ease";
-  canvas.style.opacity = "0";
-  card.dataset.revealed = "true";
+function revealCard(e) {
+  const t = e.querySelector("canvas");
+  t.style.transition = "opacity 350ms ease";
+  t.style.opacity = "0";
+  e.dataset.revealed = "true";
 }
 
-function scratchProgress(canvas) {
-  const ctx = canvas.getContext("2d", { willReadFrequently: true });
-  const pixels = ctx.getImageData(0, 0, canvas.width, canvas.height).data;
-  let transparent = 0;
-  for (let index = 3; index < pixels.length; index += 16) {
-    if (pixels[index] < 60) transparent += 1;
+function scratchProgress(e) {
+  const t = e.getContext("2d", { willReadFrequently: true }).getImageData(0, 0, e.width, e.height).data;
+  let n = 0;
+  for (let e = 3; e < t.length; e += 16) {
+    if (t[e] < 60) n += 1;
   }
-  return transparent / (pixels.length / 16);
+  return n / (t.length / 16);
 }
 
 function initScratchCards() {
-  const cards = document.querySelectorAll(".scratch-card");
-  cards.forEach((card) => {
-    const canvas = card.querySelector("canvas");
-    let scratching = false;
-    let moves = 0;
-
-    card.setAttribute("role", "button");
-    card.setAttribute("tabindex", "0");
-    card.setAttribute("aria-label", `Scratch to reveal ${card.dataset.label}`);
-
-    const setup = () => {
-      canvas.style.opacity = "1";
-      drawScratchCover(canvas);
-      if (card.dataset.revealed === "true") {
-        revealCard(card);
-      }
+  document.querySelectorAll(".scratch-card").forEach(e => {
+    const t = e.querySelector("canvas");
+    let n = false, o = 0;
+    e.setAttribute("role", "button");
+    e.setAttribute("tabindex", "0");
+    e.setAttribute("aria-label", `Scratch to reveal ${e.dataset.label}`);
+    const r = () => {
+      t.style.opacity = "1";
+      drawScratchCover(t);
+      if ("true" === e.dataset.revealed) revealCard(e);
     };
-
-    setup();
-    window.addEventListener("resize", setup);
-
-    canvas.addEventListener("pointerdown", (event) => {
-      if (card.dataset.revealed === "true") return;
-      scratching = true;
-      moves = 0;
-      canvas.setPointerCapture(event.pointerId);
-      eraseAt(canvas, getCanvasPoint(event, canvas));
-    });
-
-    canvas.addEventListener("pointermove", (event) => {
-      if (!scratching || card.dataset.revealed === "true") return;
-      moves += 1;
-      eraseAt(canvas, getCanvasPoint(event, canvas));
-      if (moves > 10 && scratchProgress(canvas) > 0.28) {
-        revealCard(card);
+    r();
+    window.addEventListener("resize", r);
+    t.addEventListener("pointerdown", r => {
+      if ("true" !== e.dataset.revealed) {
+        n = true;
+        o = 0;
+        t.setPointerCapture(r.pointerId);
+        eraseAt(t, getCanvasPoint(r, t));
       }
     });
-
-    canvas.addEventListener("pointerup", () => {
-      if (!scratching || card.dataset.revealed === "true") return;
-      scratching = false;
-      if (moves < 3 || scratchProgress(canvas) > 0.18) {
-        revealCard(card);
+    t.addEventListener("pointermove", r => {
+      if (n && "true" !== e.dataset.revealed) {
+        o += 1;
+        eraseAt(t, getCanvasPoint(r, t));
+        if (o > 10 && scratchProgress(t) > 0.28) revealCard(e);
       }
     });
-
-    canvas.addEventListener("pointercancel", () => {
-      scratching = false;
+    t.addEventListener("pointerup", () => {
+      if (n && "true" !== e.dataset.revealed) {
+        n = false;
+        if (o < 3 || scratchProgress(t) > 0.18) revealCard(e);
+      }
     });
-
-    card.addEventListener("keydown", (event) => {
-      if (event.key === "Enter" || event.key === " ") {
-        event.preventDefault();
-        revealCard(card);
+    t.addEventListener("pointercancel", () => {
+      n = false;
+    });
+    e.addEventListener("keydown", t => {
+      if ("Enter" === t.key || " " === t.key) {
+        t.preventDefault();
+        revealCard(e);
       }
     });
   });
 }
 
 function initDialog() {
-  const dialog = document.querySelector("#rsvpDialog");
-  const openers = document.querySelectorAll("[data-open-rsvp]");
-  const closers = document.querySelectorAll("[data-close-rsvp]");
-  if (!dialog) return;
-
-  const openDialog = () => {
-    if (typeof dialog.showModal === "function") {
-      dialog.showModal();
-    } else {
-      dialog.setAttribute("open", "");
-    }
+  const e = document.querySelector("#rsvpDialog");
+  const t = document.querySelectorAll("[data-open-rsvp]");
+  const n = document.querySelectorAll("[data-close-rsvp]");
+  if (!e) return;
+  const o = () => {
+    if ("function" == typeof e.showModal) e.showModal();
+    else e.setAttribute("open", "");
     document.body.classList.add("modal-open");
   };
-
-  const closeDialog = () => {
-    if (dialog.open) {
-      dialog.close();
-    } else {
-      dialog.removeAttribute("open");
+  const r = () => {
+    if (e.open) e.close();
+    else {
+      e.removeAttribute("open");
       document.body.classList.remove("modal-open");
     }
   };
-
-  openers.forEach((button) => button.addEventListener("click", openDialog));
-  closers.forEach((button) => button.addEventListener("click", closeDialog));
-
-  dialog.addEventListener("click", (event) => {
-    if (event.target === dialog && window.innerWidth > 480) {
-      closeDialog();
-    }
+  t.forEach(e => e.addEventListener("click", o));
+  n.forEach(e => e.addEventListener("click", r));
+  e.addEventListener("click", t => {
+    if (t.target === e && window.innerWidth > 480) r();
   });
-
-  dialog.addEventListener("close", () => {
+  e.addEventListener("close", () => {
     document.body.classList.remove("modal-open");
   });
 }
 
-function initAudioToggle() {
-  const toggle = document.querySelector("[data-audio-toggle]");
-  const audio = document.querySelector("#invitationAudio");
-  if (!toggle) return;
-  let playing = true;
-
-  toggle.addEventListener("click", () => {
-    playing = !playing;
-    toggle.setAttribute("aria-label", playing ? "Pause background music" : "Play background music");
-    toggle.innerHTML = icon(playing ? "pause" : "play");
-    if (audio) {
-      if (playing) audio.play().catch(() => {});
-      else audio.pause();
-    }
-  });
-}
-
 function initGallery() {
-  const gallery = document.querySelector(".gallery-window");
-  const track = document.querySelector(".gallery-track");
-  if (!gallery || !track) return;
-
-  let isDragging = false;
-  let startX = 0;
-  let startScroll = 0;
-
-  gallery.addEventListener("pointerdown", (event) => {
-    isDragging = true;
-    startX = event.clientX;
-    startScroll = gallery.scrollLeft;
-    track.style.animationPlayState = "paused";
-    gallery.setPointerCapture(event.pointerId);
+  const e = document.querySelector(".gallery-window");
+  const t = document.querySelector(".gallery-track");
+  if (!e || !t) return;
+  let n = false, o = 0, r = 0;
+  e.addEventListener("pointerdown", a => {
+    n = true;
+    o = a.clientX;
+    r = e.scrollLeft;
+    t.style.animationPlayState = "paused";
+    e.setPointerCapture(a.pointerId);
   });
-
-  gallery.addEventListener("pointermove", (event) => {
-    if (!isDragging) return;
-    gallery.scrollLeft = startScroll - (event.clientX - startX);
+  e.addEventListener("pointermove", t => {
+    if (n) e.scrollLeft = r - (t.clientX - o);
   });
-
-  gallery.addEventListener("pointerup", () => {
-    isDragging = false;
+  e.addEventListener("pointerup", () => {
+    n = false;
   });
-
-  gallery.addEventListener("pointercancel", () => {
-    isDragging = false;
+  e.addEventListener("pointercancel", () => {
+    n = false;
   });
 }
 
 function initCloudAnimation() {
-  const section = document.querySelector(".schedule-section");
-  const cloudLeft = document.querySelector(".cloud-left");
-  const cloudRight = document.querySelector(".cloud-right");
-  if (!section || !cloudLeft || !cloudRight) return;
-
-  const handleScroll = () => {
-    const rect = section.getBoundingClientRect();
-    const viewHeight = window.innerHeight;
-    
-    // Start parting when the top of the section is at 80% of the viewport height
-    // Finish parting when the top of the section is at 20% of the viewport height
-    const startY = viewHeight * 0.8;
-    const endY = viewHeight * 0.2;
-    
-    if (rect.top < startY && rect.bottom > 0) {
-      const distance = startY - rect.top;
-      const range = startY - endY;
-      const progress = Math.min(Math.max(distance / range, 0), 1);
-      
-      // Maximum parting translation is 400px to fully clear the 620px wide event list
-      const maxTranslation = 400;
-      const translation = progress * maxTranslation;
-      
-      cloudLeft.style.transform = `translate3d(${-translation}px, 0, 0)`;
-      cloudRight.style.transform = `translate3d(${translation}px, 0, 0)`;
-    } else if (rect.top >= startY) {
-      cloudLeft.style.transform = "translate3d(0, 0, 0)";
-      cloudRight.style.transform = "translate3d(0, 0, 0)";
+  const e = document.querySelector(".schedule-section");
+  const t = document.querySelector(".cloud-left");
+  const n = document.querySelector(".cloud-right");
+  if (!e || !t || !n) return;
+  const o = () => {
+    const o = e.getBoundingClientRect();
+    const r = window.innerHeight;
+    const a = 0.8 * r;
+    const i = 0.2 * r;
+    if (o.top < a && o.bottom > 0) {
+      const e = a - o.top;
+      const d = a - i;
+      const s = Math.min(Math.max(e / d, 0), 1) * 400;
+      t.style.transform = `translate3d(${-s}px, 0, 0)`;
+      n.style.transform = `translate3d(${s}px, 0, 0)`;
+    } else if (o.top >= a) {
+      t.style.transform = "translate3d(0, 0, 0)";
+      n.style.transform = "translate3d(0, 0, 0)";
     }
   };
+  window.addEventListener("scroll", o, { passive: true });
+  o();
+}
 
-  window.addEventListener("scroll", handleScroll, { passive: true });
-  handleScroll();
+const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyed697uE4ghoUCtiCMSzRjfk_QuGihjsJIEYWqc493vE5X65dCOP1oCp7EFabDHdzN9g/exec";
+
+function initRsvpForm() {
+  const e = document.querySelector("#rsvpForm");
+  const t = document.querySelector("#rsvpStatus");
+  const n = document.querySelector("#rsvpSubmit");
+  function o(e, n) {
+    t.removeAttribute("hidden");
+    t.className = `rsvp-status ${e}`;
+    t.textContent = n;
+  }
+  if (e && t && n) {
+    e.addEventListener("submit", async r => {
+      r.preventDefault();
+      const a = e.querySelector("[name='guest-name']").value.trim();
+      const i = e.querySelector("[name='attendance']:checked")?.value ?? "";
+      const c = e.querySelector("[name='guest-count']").value.trim();
+      const d = e.querySelector("[name='food-notes']").value.trim();
+      if (a) {
+        if (i) {
+          t.setAttribute("hidden", "");
+          n.disabled = true;
+          n.textContent = "Sending…";
+          try {
+            await fetch(GOOGLE_SCRIPT_URL, {
+              method: "POST",
+              mode: "no-cors",
+              headers: { "Content-Type": "text/plain" },
+              body: JSON.stringify({
+                name: a,
+                attendance: i,
+                guests: c || "0",
+                food: d || "None",
+                timestamp: (new Date()).toISOString()
+              })
+            });
+            o("success", "✅ Thank you! Your RSVP has been recorded.");
+            e.reset();
+          } catch (e) {
+            o("error", "Something went wrong. Please try again.");
+          } finally {
+            n.disabled = false;
+            n.textContent = "Submit";
+          }
+        } else {
+          o("error", "Please select your attendance.");
+        }
+      } else {
+        o("error", "Please enter your name.");
+      }
+    });
+  }
+}
+
+function initAntiCopy() {
+  document.addEventListener("contextmenu", function (e) {
+    e.preventDefault();
+  });
+  document.addEventListener("keydown", function (e) {
+    if ("F12" === e.key) e.preventDefault();
+    if (e.ctrlKey || e.metaKey) {
+      const t = e.key.toLowerCase();
+      if ("u" === t || "s" === t || "c" === t || "p" === t) e.preventDefault();
+      if (e.shiftKey && ("i" === t || "j" === t || "c" === t)) e.preventDefault();
+    }
+  });
+  document.addEventListener("dragstart", function (e) {
+    if ("IMG" === e.target.nodeName.toUpperCase()) e.preventDefault();
+  });
 }
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -319,7 +330,9 @@ document.addEventListener("DOMContentLoaded", () => {
   initReveals();
   initScratchCards();
   initDialog();
-  initAudioToggle();
+  initRsvpForm();
   initGallery();
   initCloudAnimation();
+  initAntiCopy();
+  initMusicToggle();
 });
