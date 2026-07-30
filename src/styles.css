@@ -285,7 +285,7 @@ button {
   object-fit: contain;
   transition:
     transform 1200ms var(--ease),
-    opacity 500ms ease 900ms;
+    opacity 300ms ease;
 }
 
 .intro-cover:not(.is-open) .wax-seal {
