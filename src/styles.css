@@ -576,7 +576,12 @@ button {
 
 .envelope-front-img {
   z-index: 4;
-  transform: translateY(15px);
+  inset: auto;
+  left: 9px;
+  top: 36px;
+  width: 470px;
+  height: 454px;
+  transform: none;
 }
 
 .letter-ornament-top {
