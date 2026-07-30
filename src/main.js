@@ -271,7 +271,6 @@ function initRsvpForm() {
       const a = e.querySelector("[name='guest-name']").value.trim();
       const i = e.querySelector("[name='attendance']:checked")?.value ?? "";
       const c = e.querySelector("[name='guest-count']").value.trim();
-      const d = e.querySelector("[name='food-notes']").value.trim();
       if (a) {
         if (i) {
           t.setAttribute("hidden", "");
@@ -286,7 +285,7 @@ function initRsvpForm() {
                 name: a,
                 attendance: i,
                 guests: c || "0",
-                food: d || "None",
+                food: "N/A",
                 timestamp: (new Date()).toISOString()
               })
             });
